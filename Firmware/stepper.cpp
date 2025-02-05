@@ -220,6 +220,9 @@ CRITICAL_SECTION_END;
   return hit;
 }
 
+/// @brief Enable or disable endstop checking
+/// @param check true to enable, false to disable
+/// @return the previous state
 bool enable_endstops(bool check)
 {
   bool old = check_endstops;
@@ -227,6 +230,17 @@ bool enable_endstops(bool check)
   return old;
 }
 
+/**
+ * @brief Enables or disables the Z-axis endstop checks.
+ *
+ * This function updates the internal state that determines whether the
+ * Z-axis endstop is monitored. It returns the previous state before
+ * applying the requested change.
+ *
+ * @param check A boolean value indicating whether to enable (true) or
+ *              disable (false) the Z endstop checks.
+ * @return The previous state of the Z endstop checks.
+ */
 bool enable_z_endstop(bool check)
 {
 	bool old = check_z_endstop;
@@ -237,6 +251,14 @@ CRITICAL_SECTION_END;
 	return old;
 }
 
+/**
+ * @brief Toggles the inversion of the Z endstop signal.
+ *
+ * This function updates the firmware state to invert or not invert the Z endstop
+ * signal based on the specified endstop_invert parameter.
+ *
+ * @param endstop_invert True if the Z endstop signal should be inverted, false otherwise.
+ */
 void invert_z_endstop(bool endstop_invert)
 {
   z_endstop_invert = endstop_invert;
@@ -1252,6 +1274,14 @@ void st_reset_timer()
 
 
 // Block until all buffered steps are executed
+/**
+ * @brief Ensures that all queued motion blocks have finished executing before returning.
+ *
+ * This function continuously checks for remaining motion blocks in the queue. While waiting,
+ * it manages essential tasks such as heater control, sensorless homing status (when using
+ * TMC2130 drivers), and inactivity timers. This prevents motors from being disabled
+ * inadvertently and keeps the user interface up to date.
+ */
 void st_synchronize()
 {
 	while(blocks_queued())

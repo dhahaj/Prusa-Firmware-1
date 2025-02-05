@@ -2973,6 +2973,10 @@ static const char* lcd_display_message_fullscreen_nonBlocking_P(const char *msg)
     return multi_screen ? msgend : NULL;
 }
 
+
+/// @brief show full screen message
+/// @param msg message to be displayed from PROGMEM
+/// @return rest of the text (to be displayed on next page)
 const char* lcd_display_message_fullscreen_P(const char *msg)
 {
     // Disable update of the screen by the usual lcd_update(0) routine.

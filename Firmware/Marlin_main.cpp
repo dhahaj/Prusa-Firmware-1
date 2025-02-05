@@ -1863,6 +1863,11 @@ static void axis_is_at_home(uint8_t axis) {
 }
 
 //! @return original feedmultiply
+
+
+/// @brief Safely move Z-axis by distance delta (mm)
+/// @param enable_endstops_now enable endstops before moving
+/// @return 
 static int setup_for_endstop_move(bool enable_endstops_now = true) {
     saved_feedrate = feedrate;
     int l_feedmultiply = feedmultiply;
@@ -2200,7 +2205,7 @@ void homeaxis(uint8_t axis, uint8_t cnt)
     enable_endstops(endstops_enabled);
 }
 
-/**/
+/// @brief Home all axes
 void home_xy()
 {
     set_destination_to_current();

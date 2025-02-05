@@ -346,6 +346,11 @@ int lcd_puts_P(const char* str)
 	return fputs_P(str, lcdout);
 }
 
+/// @brief Print a string at a specific location on the LCD
+/// @param c The column to print at
+/// @param r The row to print at
+/// @param str The string to print
+/// @return The number of characters printed
 int lcd_puts_at_P(uint8_t c, uint8_t r, const char* str)
 {
 	lcd_set_cursor(c, r);
@@ -542,6 +547,8 @@ void lcd_update(uint8_t lcdDrawUpdateOverride)
 		lcd_lcdupdate_func();
 }
 
+/// @brief Consume the click event
+/// @param enabled Enable the click event
 void lcd_update_enable(uint8_t enabled)
 {
 	// printf_P(PSTR("lcd_update_enable(%u -> %u)\n"), lcd_update_enabled, enabled);
