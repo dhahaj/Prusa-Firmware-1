@@ -424,8 +424,9 @@
 
 #define THERMAL_MODEL_Ta_corr -7     // Default ambient temperature correction
 
-#include "thermal_model/e3d_v6.h"
-#define THERMAL_MODEL_DEFAULT E3D_V6 // Default model parameters
+#include "thermal_model/volcano_60w.h"
+
+#define THERMAL_MODEL_DEFAULT VOLCANO_60W // Default model parameters
 
 /*------------------------------------
  HOST FEATURES
