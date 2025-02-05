@@ -670,6 +670,15 @@ void planner_abort_hard()
     plan_reset_next_e_sched = false;
 }
 
+/**
+ * @brief Buffers a move command using the current X, Y, Z, and E positions.
+ *
+ * Calls a movement-planning function with the current axis coordinates
+ * and the specified feed rate. This allows the planner to schedule and
+ * execute a line motion.
+ *
+ * @param feed_rate The speed of movement, in units per minute, applied to the path.
+ */
 void plan_buffer_line_curposXYZE(float feed_rate) {
     plan_buffer_line(current_position[X_AXIS], current_position[Y_AXIS], current_position[Z_AXIS], current_position[E_AXIS], feed_rate);
 }
